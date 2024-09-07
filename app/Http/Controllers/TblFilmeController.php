@@ -26,6 +26,7 @@ class TblFilmeController extends Controller
     // A função show busca a id e retorna se o filme foram localizados
     public function show(string $id){ 
         $regBook = tblfilme::find($id);
+        dd($regBook);
 
         if($regBook){
             return "Filmes Localizados ".$regBook.Response()->json([],Response::HTTP_NO_CONTENT);
@@ -43,7 +44,6 @@ class TblFilmeController extends Controller
             "nomeFilme"=>'required',
             "generoFilme"=>'required',
             "classificacaoFilme"=>'required',
-            "empressaFilme"=>'required',
             "anoFilme"=>'required',
         ]);
         if ($regVerifq->fails()) {
@@ -68,7 +68,6 @@ class TblFilmeController extends Controller
             "nomeFilme"=>'required',
             "generoFilme"=>'required',
             "classificacaoFilme"=>'required',
-            "empressaFilme"=>'required',
             "anoFilme"=>'required',
         ]);
 
@@ -76,11 +75,10 @@ class TblFilmeController extends Controller
             return 'registros não atualizados: '.Response()->json([],Response::HTTP_NO_CONTENT);
         }
         
-        $regBook = tblfilme::Find($id);
+        $regBookBanco = tblfilme::Find($id);
         $regBookBanco->nomeFilme = $regBook['nomeFilme'];
         $regBookBanco->generoFilme = $regBook['generoFilme'];
         $regBookBanco->classificacaoFilme = $regBook['classificacaoFilme'];
-        $regBookBanco->empressaFilme = $regBook['empressaFilme'];
         $regBookBanco->anoFilme = $regBook['anoFilme'];
 
         $retorno = $regBookBanco->save();
@@ -98,10 +96,10 @@ class TblFilmeController extends Controller
     //Crud -> delete(apagar)
     public function destroy(string $id){
 
-        $regBook = tblfilme::Find($id);
+        $regBook = tblfilme::find($id);
 
         if ($regBook->delete()) {
-        return"O filme foi deletado com sucesso".Response()->json([],Response::HTTP_NO_CONTENT);
+        return"O filme foi deletado com sucesso";
     }
         return "Algo deu errado: filme não deletado".Response()->json([],Response::HTTP_NO_CONTENT);
     }

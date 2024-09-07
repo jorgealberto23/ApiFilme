@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string("nomeFilme", 50);
             $table->string("generoFilme", 25);
             $table->string("classificacaoFilme", 3);
-            $table->string("empressaFilme", 50);
             $table->date("anoFilme");
+            $table->unsignedBigInteger("codigoEmpresafk");
+            $table->foreign("codigoEmpresafk")->references("codigo")->on("tbl_empresas")->onDelete('cascade');
             $table->timestamps();
         });
     }
