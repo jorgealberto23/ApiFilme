@@ -14,6 +14,7 @@ class tblFilme extends Model
         "nomeFilme",
         "generoFilme",
         "classificacaoFilme",
-        "anoFilme"
+        "anoFilme",
+        "codigoEmpresafk"
     ];
 }

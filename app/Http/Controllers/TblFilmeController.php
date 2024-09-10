@@ -26,7 +26,6 @@ class TblFilmeController extends Controller
     // A função show busca a id e retorna se o filme foram localizados
     public function show(string $id){ 
         $regBook = tblfilme::find($id);
-        dd($regBook);
 
         if($regBook){
             return "Filmes Localizados ".$regBook.Response()->json([],Response::HTTP_NO_CONTENT);
@@ -45,6 +44,7 @@ class TblFilmeController extends Controller
             "generoFilme"=>'required',
             "classificacaoFilme"=>'required',
             "anoFilme"=>'required',
+            "codigoEmpresafk"=>'required',
         ]);
         if ($regVerifq->fails()) {
             return 'Registros Invalidos: '.Response()->json([],Response::HTTP_NO_CONTENT);
@@ -69,6 +69,7 @@ class TblFilmeController extends Controller
             "generoFilme"=>'required',
             "classificacaoFilme"=>'required',
             "anoFilme"=>'required',
+            "codigoEmpresafk"=>'required',
         ]);
 
         if ($regVerifq->fails()) {
@@ -80,6 +81,7 @@ class TblFilmeController extends Controller
         $regBookBanco->generoFilme = $regBook['generoFilme'];
         $regBookBanco->classificacaoFilme = $regBook['classificacaoFilme'];
         $regBookBanco->anoFilme = $regBook['anoFilme'];
+        $regBookBanco->codigoEmpresafk = $regBook['codigoEmpresafk'];
 
         $retorno = $regBookBanco->save();
 

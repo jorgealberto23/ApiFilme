@@ -16,10 +16,6 @@ Route::post('/empresa',[TblEmpresaController::class,'store']);
 Route::put('/empresa/{codigo}',[TblEmpresaController::class,'update']);
 Route::delete('/empresa/{id}',[TblEmpresaController::class,'destroy']);
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
 Route::get('/',function(){return response()->json(['Sucesso'=>true]);});
 Route::get('/filmes',[TblFilmeController::class, 'index']);
 Route::get('/filmes/{codigo}',[TblFilmeController::class,'show']);
